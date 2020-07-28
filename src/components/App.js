@@ -1,9 +1,17 @@
 import React from 'react';
+import NavBar from './NavBar';
+import { Route } from 'react-router-dom';
+import SignInForm from './SignInForm';
+
 
 class App extends React.Component {
     render() {
         return (
-            <h1>Hello, World!</h1>
+            <React.Fragment>
+                <NavBar />
+                <Route exact path="/" component={null} />
+                <Route path="/signin" component={SignInForm} />
+            </React.Fragment>
         );
     }
 }
