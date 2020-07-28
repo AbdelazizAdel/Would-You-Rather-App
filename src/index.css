@@ -121,6 +121,7 @@ main {
   min-height: 13vh;
   vertical-align: middle;
   text-align: left;
+  padding: 5px;
 }
 
 .poll-card .card-info span {
@@ -139,10 +140,16 @@ main {
   width: inherit;
   padding: 3px 0;
   border-radius: 5px;
-  border: 2px solid #ddd;
+  border: 1px solid transparent;
   cursor: pointer;
-  background-color: #fff;
+  background-color: rgb(36, 145, 36);
   font-size: 1.05em;
+}
+.poll-card .card-info button a {
+  display: inline-block;
+  width: inherit;
+  color: #fff;
+  text-decoration: none;
 }
 
 .btns button:focus {
@@ -345,7 +352,13 @@ i {
   background-color: rgb(16, 124, 12);
   font-size: 1.05em;
   margin-top: 10px;
+}
+
+.u-poll .card-info button a {
+  display: inline-block;
+  width: inherit;
   color: #fff;
+  text-decoration: none;
 }
 
 .sign-in {

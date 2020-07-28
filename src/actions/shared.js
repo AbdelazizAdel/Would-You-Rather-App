@@ -1,7 +1,18 @@
-import { _getQuestions, _getUsers } from '../utils/_DATA';
+import { _getQuestions, _getUsers, _saveQuestionAnswer } from '../utils/_DATA';
 import { setAuthedUser } from './authedUser';
 import { recieveQuestions } from './questions';
 import { recieveUsers } from './users';
+
+export const ADD_ANSWER = 'ADD_ANSWER';
+
+function addAnswer(uid, qid, answer) {
+    return {
+        type: ADD_ANSWER,
+        uid,
+        qid,
+        answer,
+    }
+}
 
 export function getInitialData(authedUser) {
     return (dispatch) => {
@@ -12,4 +23,16 @@ export function getInitialData(authedUser) {
                 dispatch(setAuthedUser(authedUser));
             });
     };
+}
+
+export function saveAnswer(uid, qid, answer) {
+    return (dispatch) => {
+        _saveQuestionAnswer({
+            authedUser: uid,
+            qid,
+            answer,
+        }).then(res => {
+            dispatch(addAnswer(uid, qid, answer));
+        });
+    }
 }
