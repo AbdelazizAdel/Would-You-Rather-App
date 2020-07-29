@@ -13,20 +13,31 @@ class Home extends React.Component {
 
     getAnsweredQuestions = () => {
         const users = this.props.users;
+        const questions = this.props.questions;
         const authedUser = this.props.authedUser;
-        return Object.keys(users[authedUser].answers);
+        const arr = Object.keys(users[authedUser].answers);
+        const filteredArr = Object.values(questions).filter(q => arr.includes(q.id)).sort((a, b) => {
+            return b.timestamp - a.timestamp;
+        });
+        return filteredArr.map(q => q.id);
     }
 
     getUnansweredQuestions = (answeredQuestions) => {
         const questions = this.props.questions;
-        return Object.keys(questions).filter((id) => !answeredQuestions.includes(id));
+        const arr = Object.values(questions).sort((a, b) => {
+            return b.timestamp - a.timestamp;
+        });
+        return arr.filter(q => !answeredQuestions.includes(q.id)).map(q => q.id);
     }
 
     toggleQuestions = num => this.setState(() => ({ ans: num }));
 
     render() {
-        if (this.props.authedUser == null)
-            return <Redirect to="/signin" />;
+        if (this.props.authedUser === null)
+            return <Redirect to={{
+                pathname: '/signin',
+                state: { from: this.props.history.location }
+            }} />;
         const answeredQuestions = this.getAnsweredQuestions();
         const unAnsweredQuestions = this.getUnansweredQuestions(answeredQuestions);
         const questions = this.state.ans === 0 ? unAnsweredQuestions : answeredQuestions;
@@ -50,3 +61,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Home);
+

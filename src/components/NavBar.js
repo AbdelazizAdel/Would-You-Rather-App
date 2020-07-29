@@ -15,11 +15,11 @@ class NavBar extends React.Component {
             <React.Fragment>
                 <nav>
                     <Link to="/">Home</Link>
-                    <Link to="/new">New Question</Link>
+                    <Link to="/add">New Question</Link>
                     <Link to="/leaderboard">Leader Board</Link>
                     <div className="right">
                         {user != null && <span>{`Hello, ${this.getUserName(user)}`}</span>}
-                        <Link to="signin" onClick={() => { this.props.dispatch(resetUser()) }}>Logout</Link>
+                        <Link to="/" onClick={() => { this.props.dispatch(resetUser()) }}>Logout</Link>
                     </div>
                 </nav>
                 <div className="border"></div>

@@ -21,6 +21,8 @@ class UnAnsweredPoll extends React.Component {
     getAuthorInfo = qid => {
         const questions = this.props.questions;
         const users = this.props.users;
+        console.log(qid);
+        console.log(questions);
         return {
             name: users[questions[qid].author].name,
             img: users[questions[qid].author].avatarURL,
@@ -57,7 +59,7 @@ class UnAnsweredPoll extends React.Component {
                         <input type="radio" name="option" id="o2" value={`${questionText.text_2}`} ref={this.optionTwoRef} />
                         <label htmlFor="o2">{`${questionText.text_2}`}</label>
                         <br />
-                        <button type="button" onClick={this.saveAnswer}><Link to="/">submit</Link></button>
+                        <button type="button" onClick={this.saveAnswer}><Link to={`/questions/${qid}`}>submit</Link></button>
                     </div>
                 </div>
             </div>

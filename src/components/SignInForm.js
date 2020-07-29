@@ -1,7 +1,6 @@
 import React from 'react';
 import { getInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 
 
@@ -12,13 +11,13 @@ class SignInForm extends React.Component {
         this.ref = React.createRef();
     }
 
-
     handleSignIn = () => {
         const dispatch = this.props.dispatch;
         const userName = this.ref.current.value;
         const id = userName.replace(' ', '').toLowerCase();
         dispatch(getInitialData(id));
-        setTimeout(() => { this.props.history.push('/') }, 1000);
+        const to = this.props.location.state ? this.props.location.state.from.pathname : '/';
+        setTimeout(() => { this.props.history.push(to) }, 1000);
     }
 
     render() {

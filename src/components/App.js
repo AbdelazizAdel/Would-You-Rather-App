@@ -13,8 +13,8 @@ class App extends React.Component {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/signin" component={SignInForm} />
-                <Route exact path="/polls/:id" component={PollView} />
-                <Route exact path="/new" component={NewPoll} />
+                <Route exact path="/questions/:id" component={PollView} />
+                <Route exact path="/add" component={NewPoll} />
                 <Route exact path="/leaderboard" component={UsersList} />
                 <Route component={NotFound} />
             </Switch>

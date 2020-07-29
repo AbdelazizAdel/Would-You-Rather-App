@@ -3,6 +3,9 @@ import UnAnsweredPoll from './UnAnsweredPoll';
 import AnsweredPoll from './AnsweredPoll';
 import { connect } from 'react-redux';
 import NavBar from './NavBar';
+import { Redirect } from 'react-router-dom';
+import NotFound from './NotFound';
+
 
 
 class PollView extends React.Component {
@@ -12,8 +15,20 @@ class PollView extends React.Component {
 
     }
 
+    questionExists(qid) {
+        return this.props.questions[qid] !== undefined;
+    }
+
     render() {
+        if (this.props.authedUser === null)
+            return <Redirect to={{
+                pathname: '/signin',
+                state: { from: this.props.history.location }
+            }} />;
+
         const qid = this.props.match.params.id;
+        if (!this.questionExists(qid))
+            return <NotFound />
         if (this.isAnsweredQuestion(qid))
             return (
                 <React.Fragment>
@@ -32,8 +47,7 @@ class PollView extends React.Component {
 
 function mapStateToProps(state, props) {
     return {
-        authedUser: state.authedUser,
-        users: state.users,
+        ...state,
         ...props,
     }
 }

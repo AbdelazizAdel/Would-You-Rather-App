@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { saveQuestion } from '../actions/shared'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import NavBar from './NavBar';
 
 
@@ -22,6 +22,12 @@ class NewPoll extends React.Component {
     }
 
     render() {
+        if (this.props.authedUser === null)
+            return <Redirect to={{
+                pathname: '/signin',
+                state: { from: this.props.history.location }
+            }} />;
+
         return (
             <React.Fragment>
                 <NavBar />

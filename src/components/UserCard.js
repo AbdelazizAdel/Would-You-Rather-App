@@ -6,7 +6,6 @@ class UserCard extends React.Component {
     getUserInfo(uid) {
         const avatar = this.props.users[uid].avatarURL;
         const name = this.props.users[uid].name;
-        console.log(this.props.users);
         const answered = Object.keys(this.props.users[uid].answers).length;
         const asked = this.props.users[uid].questions.length;
         return {

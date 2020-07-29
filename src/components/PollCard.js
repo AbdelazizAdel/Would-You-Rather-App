@@ -36,7 +36,7 @@ class PollCard extends React.Component {
                 <div className="card-info">
                     <span>Would you rather</span>
                     <span>{`...${this.getQuestionText(qid)}...`}</span>
-                    <button type="button"><Link to={`/polls/${qid}`}>view poll</Link></button>
+                    <button type="button"><Link to={`/questions/${qid}`}>view poll</Link></button>
                 </div>
             </React.Fragment>
         );
