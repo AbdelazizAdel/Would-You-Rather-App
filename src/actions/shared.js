@@ -1,9 +1,19 @@
-import { _getQuestions, _getUsers, _saveQuestionAnswer } from '../utils/_DATA';
+import { _getQuestions, _getUsers, _saveQuestionAnswer, _saveQuestion } from '../utils/_DATA';
 import { setAuthedUser } from './authedUser';
 import { recieveQuestions } from './questions';
 import { recieveUsers } from './users';
 
 export const ADD_ANSWER = 'ADD_ANSWER';
+export const ADD_QUESTION = 'ADD_QUESTION';
+
+
+function addQuestion(obj, uid) {
+    return {
+        type: ADD_QUESTION,
+        question: { ...obj },
+        uid,
+    }
+}
 
 function addAnswer(uid, qid, answer) {
     return {
@@ -34,5 +44,13 @@ export function saveAnswer(uid, qid, answer) {
         }).then(res => {
             dispatch(addAnswer(uid, qid, answer));
         });
+    }
+}
+
+export function saveQuestion(obj) {
+    return (dispatch) => {
+        _saveQuestion(obj).then(res => {
+            dispatch(addQuestion(res, obj.author));
+        })
     }
 }

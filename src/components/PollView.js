@@ -1,7 +1,9 @@
 import React from 'react';
-import UnansweredPoll from './UnAnsweredPoll';
+import UnAnsweredPoll from './UnAnsweredPoll';
 import AnsweredPoll from './AnsweredPoll';
 import { connect } from 'react-redux';
+import NavBar from './NavBar';
+
 
 class PollView extends React.Component {
 
@@ -13,8 +15,18 @@ class PollView extends React.Component {
     render() {
         const qid = this.props.match.params.id;
         if (this.isAnsweredQuestion(qid))
-            return <AnsweredPoll qid={qid} />;
-        return <UnansweredPoll qid={qid} />
+            return (
+                <React.Fragment>
+                    <NavBar />
+                    <AnsweredPoll qid={qid} />
+                </React.Fragment>
+            );
+        return (
+            <React.Fragment>
+                <NavBar />
+                <UnAnsweredPoll qid={qid} />
+            </React.Fragment>
+        );
     }
 }
 

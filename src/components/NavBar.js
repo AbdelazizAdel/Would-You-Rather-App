@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { resetUser } from '../actions/authedUser'
 
 class NavBar extends React.Component {
 
@@ -18,7 +19,7 @@ class NavBar extends React.Component {
                     <Link to="/leaderboard">Leader Board</Link>
                     <div className="right">
                         {user != null && <span>{`Hello, ${this.getUserName(user)}`}</span>}
-                        <Link to="signin">Logout</Link>
+                        <Link to="signin" onClick={() => { this.props.dispatch(resetUser()) }}>Logout</Link>
                     </div>
                 </nav>
                 <div className="border"></div>

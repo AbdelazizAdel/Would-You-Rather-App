@@ -237,7 +237,7 @@ main {
   border: 2px solid rgb(67, 207, 48);
 }
 
-i {
+.a-poll i {
   position: absolute;
   top: 0;
   right: 0;
@@ -258,7 +258,6 @@ i {
 }
 
 .progress .bar {
-  width: 50%;
   height: inherit;
   background-color: rgb(51, 151, 42);
   border: 1px solid transparent;
@@ -409,11 +408,12 @@ select {
   width: 90%;
   margin: 10px auto;
   background-color: rgb(36, 145, 36);
-  color: #fff;
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 7px 1px;
   cursor: pointer;
+  color: #fff;
+
 }
 
 option {
@@ -478,11 +478,17 @@ button:focus, select:focus, input:focus {
   width: 95%;
   margin: 10px auto;
   background-color: rgb(36, 145, 36);
-  color: #fff;
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 7px 1px;
   cursor: pointer;
+}
+
+.new-poll button a {
+  display: inline-block;
+  width: inherit;
+  color: #fff;
+  text-decoration: none;
 }
 
 .main {
@@ -562,10 +568,30 @@ button:focus, select:focus, input:focus {
 }
 
 .user-card .score div {
+  width: 2vw;
+  height: 2vw;
+  line-height: 2vw;
   display: inline-block;
   padding: 5px;
   background-color: rgb(18, 168, 30);
   color: #fff;
   border-radius: 50%;
   margin-top: 10px;
+}
+
+.error {
+  width: 50vw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error span {
+  font-size: 4em;
+}
+
+.error i {
+  display: inline-block;
+  margin-top: 35vh;
+  font-size: 7em;
+  color: rgb(197, 51, 14);
 }

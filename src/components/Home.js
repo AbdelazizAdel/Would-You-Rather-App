@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PollsList from './PollsList';
 import { Redirect } from 'react-router-dom';
+import NavBar from './NavBar';
 
 class Home extends React.Component {
 
@@ -30,13 +31,16 @@ class Home extends React.Component {
         const unAnsweredQuestions = this.getUnansweredQuestions(answeredQuestions);
         const questions = this.state.ans === 0 ? unAnsweredQuestions : answeredQuestions;
         return (
-            <main>
-                <div className="btns">
-                    <button type="button" onClick={() => { this.toggleQuestions(1) }}>Answered Questions</button>
-                    <button type="button" onClick={() => { this.toggleQuestions(0) }}>Unanswered Questions</button>
-                </div>
-                <PollsList questions={questions} ref={this.ref} />
-            </main>
+            <React.Fragment>
+                <NavBar />
+                <main>
+                    <div className="btns">
+                        <button type="button" onClick={() => { this.toggleQuestions(1) }}>Answered Questions</button>
+                        <button type="button" onClick={() => { this.toggleQuestions(0) }}>Unanswered Questions</button>
+                    </div>
+                    <PollsList questions={questions} ref={this.ref} />
+                </main>
+            </React.Fragment>
         );
     }
 }

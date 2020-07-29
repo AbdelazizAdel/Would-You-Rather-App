@@ -1,5 +1,5 @@
 import { RECIEVE_QUESTIONS } from '../actions/questions';
-import { ADD_ANSWER } from '../actions/shared';
+import { ADD_ANSWER, ADD_QUESTION } from '../actions/shared';
 
 export function questions(state = {}, action) {
     switch (action.type) {
@@ -14,6 +14,13 @@ export function questions(state = {}, action) {
                         ...state[action.qid][action.answer],
                         votes: state[action.qid][action.answer]['votes'].concat([action.uid])
                     }
+                }
+            }
+        case ADD_QUESTION:
+            return {
+                ...state,
+                [action.question.id]: {
+                    ...action.question
                 }
             }
         default:

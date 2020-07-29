@@ -1,20 +1,23 @@
 import React from 'react';
-import NavBar from './NavBar';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SignInForm from './SignInForm';
 import Home from './Home';
 import PollView from './PollView';
-
+import NewPoll from './NewPoll';
+import UsersList from './UsersList';
+import NotFound from './NotFound';
 
 class App extends React.Component {
     render() {
         return (
-            <React.Fragment>
-                <NavBar />
+            <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/signin" component={SignInForm} />
-                <Route path="/polls/:id" component={PollView} />
-            </React.Fragment>
+                <Route exact path="/signin" component={SignInForm} />
+                <Route exact path="/polls/:id" component={PollView} />
+                <Route exact path="/new" component={NewPoll} />
+                <Route exact path="/leaderboard" component={UsersList} />
+                <Route component={NotFound} />
+            </Switch>
         );
     }
 }
